@@ -61,7 +61,7 @@ function(source_map_consumer) {
     }
 
     if (traceFormat === "chrome") {
-      regex = /^ +at.+\((.*):([0-9]+):([0-9]+)/;
+      regex = /^ +at.* +\(?(.*):([0-9]+):([0-9]+)/;
       expected_fields = 4;
       // (skip first line containing exception message)
       skip_lines = 1;
@@ -249,7 +249,7 @@ function(source_map_consumer) {
   };
 
   function origNameChrome(origLine) {
-    var match = / +at +([^ ]*).*/.exec(origLine);
+    var match = / +at +([^ ]*) +.*/.exec(origLine);
     return match && match[1];
   }
 
